@@ -17,7 +17,9 @@ https://getbootstrap.com/
 https://vuejs.org/
 https://www.chartjs.org/
 
-Add to nginx
+
+
+Add to nginx /etc/nginx/sites-available/default
     location / {
         proxy_pass         http://localhost:6000;
         proxy_http_version 1.1;
@@ -29,4 +31,31 @@ Add to nginx
         proxy_set_header   X-Forwarded-Proto $scheme;
     }
 }
+
+/etc/systemd/system/bob-calypso.service
+[Unit]
+Description=Bob Calypsos .Net Everywhere
+
+[Service]
+WorkingDirectory=/home/inctrakmanga/dotnet/bobweb
+ExecStart=/usr/bin/dotnet /home/inctrakmanga/dotnet/bobweb/bobweb.dll --urls=http://localhost:6000
+Restart=always
+# Restart service after 10 seconds if the dotnet service crashes:
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=bob-calypso
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target
+
+sudo systemctl enable bob-calypso.service
+sudo systemctl start bob-calypso.service
+sudo systemctl status bob-calypso.service
+
+Docker
+docker build -t bobcalypsoweb .
+docker rmi $(docker images -f "dangling=true" -q)
 
