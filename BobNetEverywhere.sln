@@ -5,13 +5,14 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{748C5D73-B5AB-4BE0-919C-31FA5C5B5323}"
 	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bobdomain", "bobdomain\bobdomain.csproj", "{49A48843-ED29-4042-A4FB-0B9492E83CFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bobdomain", "bobdomain\bobdomain.csproj", "{49A48843-ED29-4042-A4FB-0B9492E83CFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bobweb", "bobweb\bobweb.csproj", "{30B8F281-1E97-4F50-950A-9CF715D69534}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bobweb", "bobweb\bobweb.csproj", "{30B8F281-1E97-4F50-950A-9CF715D69534}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "bobstatic", "bobstatic\", "{3586A1D0-07EC-4B5C-901C-939A55B13174}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -34,7 +35,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "bobstatic", "bobstatic\", "
 		SlnRelativePath = "bobstatic\"
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bobelectron", "bobelectron\bobelectron.csproj", "{FF2BE989-3920-4950-9B48-EC386DE16E0F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bobelectron", "bobelectron\bobelectron.csproj", "{FF2BE989-3920-4950-9B48-EC386DE16E0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
