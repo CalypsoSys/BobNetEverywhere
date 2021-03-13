@@ -2,11 +2,11 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /app 
 #
 # copy csproj and restore as distinct layers
-COPY *.sln .
 COPY bobweb/*.csproj ./bobweb/
 COPY bobdomain/*.csproj ./bobdomain/
 #
-RUN dotnet restore 
+RUN dotnet restore ./bobweb/bobweb.csproj
+RUN dotnet restore ./bobdomain/bobdomain.csproj 
 #
 # copy everything else and build app
 COPY bobweb/. ./bobweb/
