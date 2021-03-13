@@ -1,24 +1,22 @@
-﻿FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
-WORKDIR /app
-
-FROM microsoft/aspnetcore-build:5.0 AS build
-WORKDIR /src
-COPY Solution.sln ./
-COPY bobdomain/*.csproj ./bobdomain/
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+WORKDIR /app 
+#
+# copy csproj and restore as distinct layers
+COPY *.sln .
 COPY bobweb/*.csproj ./bobweb/
-
-RUN dotnet restore
-COPY . .
-WORKDIR /src/bobdomain
-RUN dotnet build -c Release -o /app
-
-WORKDIR /src/bobweb
-RUN dotnet build -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish -c Release -o /app
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app .
+COPY bobdomain/*.csproj ./bobdomain/
+#
+RUN dotnet restore 
+#
+# copy everything else and build app
+COPY bobweb/. ./bobweb/
+COPY bobdomain/. ./bobdomain/
+#
+WORKDIR /app/bobweb
+RUN dotnet publish -c Release -o out 
+#
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS runtime
+WORKDIR /app 
+#
+COPY --from=build /app/bobweb/out ./
 ENTRYPOINT ["dotnet", "bobweb.dll"]
