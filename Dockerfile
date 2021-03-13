@@ -10,6 +10,7 @@ RUN dotnet restore ./bobdomain/bobdomain.csproj
 #
 # copy everything else and build app
 COPY bobweb/. ./bobweb/
+COPY bobstatic/. ./bobweb/wwwroot/
 COPY bobdomain/. ./bobdomain/
 #
 WORKDIR /app/bobweb
