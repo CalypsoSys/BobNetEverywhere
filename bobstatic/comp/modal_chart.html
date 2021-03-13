@@ -1,0 +1,43 @@
+﻿<transition name="modal_chart">
+    <div class="modal-mask" style="max-height: 900px;overflow: auto; overflow-y:scroll;" v-show="show" @click="closeUp()">
+        <div class="container modal-container modal-container-large" @click.stop>
+            <h2>Quick Chart/Report <button class="btn btn-info btn-sm" @click="openReportWindow">Open in new tab</button></h2>
+            <hr class="mb-4">
+            <div class="row" v-show="showChart">
+                <div class="col-sm-12">
+                    <canvas id="bob-quick-chart"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <fieldset class="form-group  groupbox-border">
+                        <legend class="groupbox-border">Type</legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="line_chart" value="line" v-model="chart_type">
+                            <label class="form-check-label" for="line_chart">Line</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="bar_chart" value="bar" v-model="chart_type">
+                            <label class="form-check-label" for="bar_chart">Bar</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="radar_chart" value="radar" v-model="chart_type">
+                            <label class="form-check-label" for="radar_chart">Radar, polarArea</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="polar_chart" value="polarArea" v-model="chart_type">
+                            <label class="form-check-label" for="polar_chart">PolarArea</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm">
+                    <button class="btn btn-primary" @click="createChart()">Create Chart</button>
+                    <button class="btn btn-info btn-sm" @click="closeUp()">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</transition>

@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bob Calypsos .Net Everywhere</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" href="icon100.ico">
+    <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/bobcalypso.css" />
+    <script src="https://unpkg.com/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.5.1/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios@0.21.1/dist/axios.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+</head>
+<body class="bg-light">
+    <div class="container" id="bob_calypso" style="z-index:-2">
+        <modal_chart :show="showModalChart" @close="showModalChart = false"></modal_chart>
+        <modal_alert :show="showModalAlert" @close="showModalAlert = false" :title="modal_title" :message="modal_message" :secondary="modal_secondary" :confirm="modal_yes_no_action"></modal_alert>
+        <div class="py-5 text-center">
+            <img class="d-block mx-auto mb-4" src="/img/logo.svg" width="200">
+            <h2>Welcome to Bob Calypso .Net Everywhere Sample App</h2>
+            <p class="lead">Please choose the approriate method to start a chart.</p>
+        </div>
+
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Source</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Created</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in myList">
+                        <th scope="row">{{ item.Name }}</th>
+                        <td>{{ item.Source }}</td>
+                        <td>{{ item.Type }}</td>
+                        <td>{{ item.Status }}</td>
+                        <td>{{ new Date(item.Created).toLocaleString() }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <hr class="mb-4">
+        <div class="row">
+            <div class="col-md-5 pb-4">
+                <h4 class="mb-3">Save Item</h4>
+                <form class="needs-validation was-validated" v-on:submit.prevent="submitItemsForm">
+                    <div class="mb-3">
+                        <label for="item_one">Item One</label>
+                        <input type="text" class="form-control" v-model="item_one" id="item_one" name="item_one" placeholder="" required="">
+                        <div class="invalid-feedback">
+                            Please enter the item 1.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="range">Item Two</label>
+                        <input type="text" class="form-control" v-model="item_two" id="item_two" name="item_two" placeholder="" required="">
+                    </div>
+                    <button class="btn btn-primary btn-lg button_botom" type="submit">Process Items</button>
+                </form>
+            </div>
+            <div class="col-md-5 pb-4">
+                <button class="btn btn-info mt-1" v-on:click.prevent="showChart">
+                    Quick Chart
+                </button>
+            </div>
+        </div>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">© 2020 Calypso Systems, LLC</p>
+        </footer>
+    </div>
+
+    <script src="/javascript/overrides.js"></script>
+    <script src="/js/bob_alert.js"></script>
+    <script src="/js/bob_chart.js"></script>
+    <script src="/js/bobcalypso.js"></script>
+</body>
+</html>
+
