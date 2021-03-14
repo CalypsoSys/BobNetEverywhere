@@ -3,7 +3,7 @@
 Run template to show how to run the same .Net Core 5.0 project in 
 * Web: 
 	* nginx on Ubuntu
-	* docker on Centos
+	* docker on Centos (see https://bobcalypso.com/index.html)
 	* IIS web on Windows
 
 * Desktop:
