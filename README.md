@@ -20,6 +20,7 @@ https://www.chartjs.org/
 
 
 Add to nginx /etc/nginx/sites-available/default
+```
     location / {
         proxy_pass         http://localhost:6000;
         proxy_http_version 1.1;
@@ -31,8 +32,10 @@ Add to nginx /etc/nginx/sites-available/default
         proxy_set_header   X-Forwarded-Proto $scheme;
     }
 }
+```
 
 /etc/systemd/system/bob-calypso.service
+```
 [Unit]
 Description=Bob Calypsos .Net Everywhere
 
@@ -50,6 +53,7 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 
 [Install]
 WantedBy=multi-user.target
+```
 
 sudo systemctl enable bob-calypso.service
 sudo systemctl start bob-calypso.service
