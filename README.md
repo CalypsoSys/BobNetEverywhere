@@ -1,21 +1,21 @@
 # BobNetEverywhere
 
 Run template to show how to run the same .Net Core 5.0 project in 
-Web: 
-	nginx on Ubuntu
-	docker on Centos
-	IIS web on Windows
+* Web: 
+	* nginx on Ubuntu
+	* docker on Centos (see https://bobcalypso.com/index.html)
+	* IIS web on Windows
 
-Desktop:
-	Windows in Electron
-	Ubuntu in Electron
+* Desktop:
+	* Windows in Electron
+	* Ubuntu in Electron
 
-
-https://github.com/ElectronNET/Electron.NET
-https://github.com/axios/axios
-https://getbootstrap.com/
-https://vuejs.org/
-https://www.chartjs.org/
+Using
+* https://github.com/ElectronNET/Electron.NET
+* https://github.com/axios/axios
+* https://getbootstrap.com/
+* https://vuejs.org/
+* https://www.chartjs.org/
 
 
 
@@ -54,14 +54,18 @@ Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
 [Install]
 WantedBy=multi-user.target
 ```
-
+Enable/start service
+```
 sudo systemctl enable bob-calypso.service
 sudo systemctl start bob-calypso.service
 sudo systemctl status bob-calypso.service
+```
 
-Docker
+Build/run a Docker w/ nginx and letsencrypt
+```
 docker build -t bobcalypsoweb .
 docker rmi $(docker images -f "dangling=true" -q)
 docker save bobcalypsoweb > /tmp/bobcalypsoweb.tar
 docker load < bobcalypsoweb.tar
 docker-compose up -d
+```
