@@ -10,7 +10,7 @@ namespace bobdomain
     public static class MyItems
     {
         private const int _items = 5;
-        public static object GetMyItems(int id)
+        public static object GetMyItems(string dataPath, int id)
         {
             string[] source = new string[] { "One", "Two", "Three", "Four", "Five", };
             List<object> items = new List<object>();
@@ -28,7 +28,8 @@ namespace bobdomain
 
             try
             {
-                using (StreamReader input = new StreamReader("data/saved_items.txt"))
+                string itemPath = Path.Combine(dataPath, "data", "saved_items.txt");
+                using (StreamReader input = new StreamReader(itemPath))
                 {
                     string line;
                     int index = _items + 1;
@@ -56,12 +57,14 @@ namespace bobdomain
             return items;
         }
 
-        public static bool SaveItem(int id, string itemOne, string itemTwo)
+        public static bool SaveItem(string dataPath, int id, string itemOne, string itemTwo)
         {
             try
             {
-                Directory.CreateDirectory("Data");
-                using ( StreamWriter output = new StreamWriter(Path.Combine("Data", "saved_items.txt"), true))
+                string dataFolder = Path.Combine(dataPath, "data");
+                Directory.CreateDirectory(dataFolder);
+                string itemPath = Path.Combine(dataFolder, "saved_items.txt");
+                using ( StreamWriter output = new StreamWriter(itemPath, true))
                 {
                     output.WriteLine("{0},{1},{2}\n", id, itemOne, itemTwo);
                 }

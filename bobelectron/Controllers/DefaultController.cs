@@ -1,8 +1,12 @@
 ﻿using bobdomain;
+using ElectronNET.API;
+using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,7 +33,13 @@ namespace bobelectron.Controllers
         {
             try
             {
-                return new { Success = true, MyList = MyItems.GetMyItems(id) };
+#if DEBUG
+                System.Diagnostics.Debugger.Launch();
+#endif
+                var userPath = Electron.App.GetPathAsync(PathName.AppData);
+                userPath.Wait();
+
+                return new { Success = true, MyList = MyItems.GetMyItems(Path.Combine(userPath.Result, "bobelectron"), id) };
             }
             catch
             {

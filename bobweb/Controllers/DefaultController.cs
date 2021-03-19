@@ -1,6 +1,7 @@
 ﻿using bobdomain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,12 @@ namespace bobweb.Controllers
     [Route("/")]
     public class DefaultController : ControllerBase
     {
+        private readonly IOptions<AppSettings> _config;
         private readonly ILogger<DefaultController> _logger;
 
-        public DefaultController(ILogger<DefaultController> logger)
+        public DefaultController(IOptions<AppSettings> config, ILogger<DefaultController> logger)
         {
+            _config = config;
             _logger = logger;
         }
 
@@ -29,7 +32,7 @@ namespace bobweb.Controllers
         {
             try
             {
-                return new { Success = true, MyList = MyItems.GetMyItems(id) };
+                return new { Success = true, MyList = MyItems.GetMyItems(_config.Value.FileSaveLocation, id) };
             }
             catch
             {

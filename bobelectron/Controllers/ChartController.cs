@@ -1,8 +1,12 @@
 ﻿using bobdomain;
+using ElectronNET.API;
+using ElectronNET.API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -26,7 +30,10 @@ namespace bobelectron.Controllers
             {
                 GraphData graph = new GraphData();
 
-                return new { Success = MyItems.SaveItem(id, item_one, item_two) };
+                var userPath = Electron.App.GetPathAsync(PathName.AppData);
+                userPath.Wait();
+
+                return new { Success = MyItems.SaveItem(Path.Combine(userPath.Result, "bobelectron"), id, item_one, item_two) };
             }
             catch (Exception excp)
             {
