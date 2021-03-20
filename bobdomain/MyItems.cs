@@ -66,7 +66,7 @@ namespace bobdomain
                 string itemPath = Path.Combine(dataFolder, "saved_items.txt");
                 using ( StreamWriter output = new StreamWriter(itemPath, true))
                 {
-                    output.WriteLine("{0},{1},{2}\n", id, itemOne, itemTwo);
+                    output.WriteLine("{0},{1},{2}", id, itemOne, itemTwo);
                 }
 
                 return true;
