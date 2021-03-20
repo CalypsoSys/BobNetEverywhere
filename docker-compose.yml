@@ -6,6 +6,9 @@ services:
     expose:
       - 80
     restart: always
+    volumes:
+      - ./app/appsettings.json:/app/appsettings.json
+      - ./bobelectron:/var/www/bobelectron
     environment:
       VIRTUAL_HOST: bobcalypso.com,www.bobcalypso.com
       LETSENCRYPT_HOST: bobcalypso.com,www.bobcalypso.com

@@ -18,6 +18,9 @@ Using
 * https://www.chartjs.org/
 
 
+dotnet publish --configuration Release
+BobNetEverywhere\bobweb\bin\Release\net5.0\publish
+sudo chown www-data:www-data /var/www/bobelectron
 
 Add to nginx /etc/nginx/sites-available/default
 ```
