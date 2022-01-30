@@ -70,5 +70,5 @@ docker build -t bobcalypsoweb .
 docker rmi $(docker images -f "dangling=true" -q)
 docker save bobcalypsoweb > /tmp/bobcalypsoweb.tar
 docker load < bobcalypsoweb.tar
-docker-compose up -d
+docker-compose start|up -d
 ```
