@@ -1,0 +1,4 @@
+title = "BobNetEverywhere gitleaks configuration"
+
+[extend]
+useDefault = true

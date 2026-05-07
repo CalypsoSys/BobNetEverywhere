@@ -1,0 +1,50 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Backend: bobweb (no browser)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "backend: build",
+            "program": "${workspaceFolder}/bobweb/bin/Debug/net10.0/bobweb.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/bobweb",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_URLS": "http://localhost:6000"
+            },
+            "presentation": {
+                "group": "local",
+                "order": 1,
+                "hidden": true
+            }
+        },
+        {
+            "name": "Frontend: Live Server",
+            "type": "pwa-chrome",
+            "request": "launch",
+            "preLaunchTask": "frontend: prepare browser launch",
+            "url": "http://127.0.0.1:5500/index.html",
+            "webRoot": "${workspaceFolder}/bobstatic",
+            "presentation": {
+                "group": "local",
+                "order": 1,
+                "hidden": true
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Local: Live Server + bobweb",
+            "configurations": [
+                "Backend: bobweb (no browser)",
+                "Frontend: Live Server"
+            ],
+            "stopAll": true,
+            "presentation": {
+                "group": "local",
+                "order": 1
+            }
+        }
+    ]
+}

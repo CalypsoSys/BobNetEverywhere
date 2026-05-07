@@ -2,50 +2,67 @@
 
 ## Project Structure & Module Organization
 
-This repository is a .NET 5 solution centered on `BobNetEverywhere.sln`.
+This repository is a `.NET 10` sample solution centered on `BobNetEverywhere.sln`.
 
-- `bobweb/` contains the ASP.NET Core web host, controllers, app settings, and project-specific `wwwroot/javascript/overrides.js`.
-- `bobelectron/` contains the Electron.NET desktop host, Electron manifest, assets, controllers, and desktop-specific overrides.
-- `bobdomain/` contains shared domain classes used by both hosts, such as item and graph data models.
-- `bobstatic/` contains shared HTML, CSS, JavaScript, image, and component assets. Both host projects link this folder into `wwwroot` during build.
-- `Dockerfile` and `docker-compose.yml` support container deployment.
+- `bobweb/` contains the ASP.NET Core web host, controllers, startup code, and web-specific configuration.
+- `bobelectron/` contains the Electron.NET desktop host, Electron manifest, and desktop startup code.
+- `bobdomain/` contains shared domain classes used by both hosts.
+- `bobstatic/` contains shared static HTML, CSS, JavaScript, images, and components for the sample UI.
+- `bobdomain.tests/` and `bobweb.tests/` contain the current automated test coverage.
+- `docs/` contains deployment, reverse proxy, and local-development notes for this public sample repo.
+- `Dockerfile` and `docker-compose.yml` support the containerized web sample.
 
 ## Build, Test, and Development Commands
 
-- `dotnet restore BobNetEverywhere.sln` restores NuGet packages for all projects.
-- `dotnet build BobNetEverywhere.sln` compiles the web, Electron, and domain projects.
-- `dotnet run --project bobweb/bobweb.csproj` runs the web host locally using `bobweb/Properties/launchSettings.json`.
-- `dotnet run --project bobelectron/bobelectron.csproj` starts the Electron.NET host; desktop packaging may require Electron.NET tooling installed locally.
-- `dotnet publish bobweb/bobweb.csproj --configuration Release` creates a release publish output for web deployment.
-- `docker build -t bobcalypsoweb .` builds the container image described by `Dockerfile`.
+- `dotnet restore BobNetEverywhere.sln` restores NuGet packages for the solution.
+- `dotnet build BobNetEverywhere.sln -c Debug` builds the web, Electron, domain, and test projects.
+- `dotnet test BobNetEverywhere.sln -c Debug` runs the current test suite.
+- `dotnet run --project bobweb/bobweb.csproj` runs the web host locally.
+- `dotnet run --project bobelectron/bobelectron.csproj` starts the Electron.NET sample; desktop packaging may
+  require Electron.NET tooling installed locally.
+- `dotnet publish bobweb/bobweb.csproj --configuration Release` creates a publish output for web deployment.
+- `docker compose up --build` builds and runs the containerized web sample.
 
 ## Coding Style & Naming Conventions
 
-Use the existing C# style: four-space indentation, braces on new lines, PascalCase for public types and methods, camelCase for parameters and locals, and `_camelCase` for private fields. Keep namespaces aligned with project names such as `bobweb.Controllers`. Place shared logic in `bobdomain` instead of duplicating it across `bobweb` and `bobelectron`.
+Use the existing C# style: four-space indentation, braces on new lines, PascalCase for public types and methods,
+camelCase for parameters and locals, and `_camelCase` for private fields. Keep namespaces aligned with project names
+such as `bobweb.Controllers`. Place shared logic in `bobdomain` instead of duplicating it across `bobweb` and
+`bobelectron`.
 
-For static assets, keep shared UI code in `bobstatic/js`, `bobstatic/css`, and `bobstatic/comp`. Use host-specific override files only for behavior that differs between web and Electron.
+For static assets, keep shared UI code in `bobstatic/`. Use host-specific overrides only for behavior that genuinely
+differs between web and Electron.
 
-Use comments sparingly. Only comment complex code, never remove existing comments, and add method comments for all methods that are not trivial.
+Use comments sparingly. Only comment complex code, never remove existing comments, and add method comments for
+non-trivial methods.
 
-Do not refactor code that is unrelated to the requested change. For example, do not rewrite a loop, change formatting, or alter structure in unaffected code while applying a targeted fix.
+Do not refactor code unrelated to the requested change. Do not rewrite loops, alter formatting, or restructure
+unaffected code while making a targeted fix.
 
 ## Testing Guidelines
 
-There is currently no dedicated test project. Before opening a PR, run `dotnet build BobNetEverywhere.sln` and manually smoke-test changed routes or UI flows. If adding tests, create a sibling project such as `bobdomain.tests/`, use `*Tests.cs` file names, and add it to `BobNetEverywhere.sln`.
+This repository already includes automated tests in `bobdomain.tests/` and `bobweb.tests/`. Run
+`dotnet test BobNetEverywhere.sln -c Debug` before finishing a change, then manually smoke-test the affected sample
+flow when UI, routing, Electron, or deployment behavior changes.
 
-Always add unit tests for any new or modified code. If a change truly cannot be unit tested, document the reason and the manual verification performed.
+Always add unit tests for new or modified code when the change is testable. If a change cannot be covered
+meaningfully, document the reason and the manual verification performed.
 
 ## Change Workflow
 
-Always ask qualifying questions before proceeding with code changes so the scope, behavior, and acceptance criteria are clear.
+Always ask qualifying questions before proceeding with code changes so scope, behavior, and acceptance criteria are
+clear.
 
 ## Commit & Pull Request Guidelines
 
-Recent commits use short, imperative summaries such as `docker` and `fix nl`. Keep commits focused and use clearer summaries when possible, for example `Fix chart data serialization` or `Update Docker deployment config`.
+Keep commits focused and use clear, imperative summaries that describe the shipped change, for example
+`Add Caddy deployment guide` or `Fix CORS origin handling`.
 
-Pull requests should include a brief description, manual test notes or build output, linked issues when applicable, and screenshots for UI changes in `bobstatic`, `bobweb`, or `bobelectron`.
+Pull requests should include a brief description, manual verification notes or build output, linked issues when
+applicable, and screenshots for visible UI changes in `bobstatic`, `bobweb`, or `bobelectron`.
 
-For post-change deliverables, always ask whether the user is ready to produce the commit, PR, and ticket. Only provide the requested combination after the user confirms. Post-change deliverables should include:
+For post-change deliverables, always ask whether the user is ready to produce the commit, PR, and ticket. Only
+provide the requested combination after the user confirms. Post-change deliverables should include:
 
 - Commit message format.
 - PR description template.
@@ -53,6 +70,11 @@ For post-change deliverables, always ask whether the user is ready to produce th
 
 ## Security & Configuration Tips
 
-Do not commit secrets or machine-specific paths in `appsettings.Development.json`. Keep production file paths, service users, and deployment URLs in environment-specific configuration.
+This is a public sample repo. Do not commit secrets, PII, passwords, tokens, private hostnames, or machine-specific
+settings.
 
-Do not commit PII, secrets, passwords, or machine-specific settings. Ensure code follows security best practices for storing and handling PII, passwords, secrets, and other sensitive data.
+Keep production-specific values out of the repo. Use environment variables, deployment-time configuration, or
+platform-specific secret stores instead of committed local secrets.
+
+`appsettings.Development.json` may contain non-secret local sample values such as allowed localhost origins, but it
+must not contain credentials or environment-specific private endpoints.
