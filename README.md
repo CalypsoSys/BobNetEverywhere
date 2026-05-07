@@ -116,7 +116,7 @@ This repo is intentionally public-facing. Keep secrets, private domains, private
 out of source control.
 
 The compose file maps the web API to `http://localhost:8081`, stores sample item data in `./data`, and does not assume
-a specific domain, reverse proxy, or TLS provider. The static sample uses same-origin `/api/*` calls by default in
-hosted environments. Docker also mounts `./logs` into `/app/logs` so the sample can emit host-visible `access.log` and
-`errors.log` files. If the static files are not served from the same origin as the API, set `window.bobApiBaseUrl` in
-`bobstatic/js/bob_config.js` to the API origin used by the browser.
+a specific domain, reverse proxy, or TLS provider. Docker also mounts `./logs` into `/app/logs` so the sample can emit
+host-visible `access.log` and `errors.log` files. The Bob deployment model uses `bobcalypso.com` for the site and
+`api.bobcalypso.com` for the API. `bobstatic/js/bob_config.js` defaults to `https://api.bobcalypso.com` when the site
+is hosted on `bobcalypso.com` and keeps the local Live Server override for development.

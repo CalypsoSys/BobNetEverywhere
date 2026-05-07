@@ -31,8 +31,8 @@ docker compose up -d --build
 
 The current compose file exposes the API on `http://localhost:8081`, stores sample item data in `./data`, and leaves
 domain, proxy, and TLS concerns to the host environment. It also mounts `./logs` into `/app/logs` for host-visible
-access and error logs. The static sample expects same-origin `/api/*` calls unless a hosted deployment overrides
-`window.bobApiBaseUrl`.
+access and error logs. The hosted Bob deployment model can use a separate API hostname, with `window.bobApiBaseUrl`
+pointing the static site at that origin.
 
 ## IIS on Windows
 
