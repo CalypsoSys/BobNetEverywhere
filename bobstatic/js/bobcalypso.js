@@ -11,21 +11,26 @@ var bobCalypso = Vue.createApp({
             modal_message: "",
             modal_secondary: "",
             modal_yes_no_action: "",
+            modal_image: "",
+            modal_image_alt: "",
         };
     },
     mounted: function () {
-        if (!window.sessionStorage.getItem("bobWelcomeShown")) {
-            window.sessionStorage.setItem("bobWelcomeShown", "true");
-            this.showModalDialog("Welcome", "To Bob Calypso .Net Everywhere");
+        if (window.sessionStorage.getItem("bobSkipWelcomeOnce") === "true") {
+            window.sessionStorage.removeItem("bobSkipWelcomeOnce");
+        } else {
+            this.showModalDialog("Welcome", "To Bob Calypso .Net Everywhere", "", "", "img/bob_calypso.png", "The Great and Powerful Bob Calypso");
         }
         this.showMyList();
     },
     methods: {
-        showModalDialog: function (title, message, secondary, yesNoAction) {
+        showModalDialog: function (title, message, secondary, yesNoAction, image, imageAlt) {
             this.modal_title = title;
             this.modal_message = message;
             this.modal_secondary = secondary;
             this.modal_yes_no_action = yesNoAction;
+            this.modal_image = image || "";
+            this.modal_image_alt = imageAlt || "";
             this.showModalStatus = false;
             this.showModalAlert = true;
         },
@@ -58,14 +63,11 @@ var bobCalypso = Vue.createApp({
 
             return true;
         },
-        submitItemsForm: function (event) {
-            if (event) {
-                event.preventDefault();
-            }
-
+        submitItemsForm: function () {
             if (!this.validateForm()) {
                 return;
             }
+            window.sessionStorage.setItem("bobSkipWelcomeOnce", "true");
             axios.get(bobApiUrl('/api/chart/save_items/'), {
                 params: {
                     id: 1,

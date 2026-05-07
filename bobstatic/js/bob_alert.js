@@ -7,7 +7,9 @@ var vueAlertDefinition = Vue.defineAsyncComponent(function () {
                 title: String,
                 message: String,
                 secondary: String,
-                confirm: String
+                confirm: String,
+                image: String,
+                imageAlt: String
             },
             emits: ['close', 'yes'],
             methods: {

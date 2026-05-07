@@ -2,13 +2,33 @@
     box-sizing: border-box;
 }
 
+:root {
+    --bob-bg: #06100a;
+    --bob-bg-soft: #0d1d13;
+    --bob-surface: rgba(12, 28, 18, .92);
+    --bob-surface-strong: #102719;
+    --bob-text: #f6f0d7;
+    --bob-muted: #c9bc88;
+    --bob-emerald: #19965f;
+    --bob-emerald-bright: #34d37d;
+    --bob-gold: #d7b650;
+    --bob-gold-bright: #ffe38a;
+    --bob-line: rgba(215, 182, 80, .28);
+    --bob-danger: #ff8f8f;
+    --bob-shadow: rgba(0, 0, 0, .45);
+}
+
 body {
     margin: 0;
-    background: #f8f9fa;
-    color: #111827;
+    background:
+        radial-gradient(circle at 20% 0%, rgba(31, 151, 93, .34), transparent 32rem),
+        radial-gradient(circle at 80% 8%, rgba(215, 182, 80, .22), transparent 28rem),
+        linear-gradient(180deg, #07130c 0%, var(--bob-bg) 42%, #030604 100%);
+    color: var(--bob-text);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.5;
+    min-height: 100vh;
 }
 
 .container {
@@ -31,17 +51,25 @@ body {
     width: 200px;
     height: auto;
     margin: 0 auto 2rem;
+    padding: .65rem;
+    border: 1px solid var(--bob-line);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .9);
+    box-shadow: 0 16px 38px var(--bob-shadow);
 }
 
 h2 {
     margin: 0 0 .5rem;
+    color: var(--bob-gold-bright);
     font-size: 2rem;
     font-weight: 500;
     line-height: 1.2;
+    text-shadow: 0 2px 18px rgba(52, 211, 125, .18);
 }
 
 h4 {
     margin: 0 0 1rem;
+    color: var(--bob-text);
     font-size: 1.5rem;
     font-weight: 500;
     line-height: 1.2;
@@ -49,13 +77,16 @@ h4 {
 
 .lead {
     margin: 0;
-    color: #31263f;
+    color: var(--bob-muted);
     font-size: 1.25rem;
     font-weight: 300;
 }
 
 .table-region {
     overflow-x: auto;
+    border-top: 1px solid var(--bob-line);
+    border-bottom: 1px solid var(--bob-line);
+    background: linear-gradient(180deg, rgba(15, 43, 26, .44), rgba(6, 16, 10, .16));
 }
 
 table {
@@ -67,24 +98,26 @@ table {
 th,
 td {
     padding: .75rem;
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid var(--bob-line);
     text-align: left;
     vertical-align: top;
 }
 
 thead th {
-    border-bottom: 2px solid #dee2e6;
+    border-bottom: 2px solid rgba(215, 182, 80, .45);
+    color: var(--bob-gold-bright);
     font-weight: 700;
 }
 
 tbody th {
+    color: #fff4c5;
     font-weight: 700;
 }
 
 hr {
     margin: 1.5rem 0;
     border: 0;
-    border-top: 1px solid #dee2e6;
+    border-top: 1px solid var(--bob-line);
 }
 
 .action-row {
@@ -113,18 +146,24 @@ label {
     width: 100%;
     min-height: 2.375rem;
     padding: .375rem .75rem;
-    border: 1px solid #ced4da;
+    border: 1px solid rgba(215, 182, 80, .38);
     border-radius: .25rem;
-    background: #fff;
-    color: #495057;
+    background: rgba(4, 12, 7, .78);
+    color: var(--bob-text);
     font: inherit;
+}
+
+.form-control:focus {
+    border-color: var(--bob-emerald-bright);
+    box-shadow: 0 0 0 .2rem rgba(52, 211, 125, .15);
+    outline: 0;
 }
 
 .invalid-feedback {
     display: none;
     width: 100%;
     margin-top: .25rem;
-    color: #dc3545;
+    color: var(--bob-danger);
     font-size: 80%;
 }
 
@@ -145,27 +184,34 @@ label {
     text-decoration: none;
     vertical-align: middle;
     cursor: pointer;
-    transition: background-color .15s ease-in-out, border-color .15s ease-in-out;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, transform .15s ease-in-out;
 }
 
 .btn-primary {
-    background: #007bff;
-    border-color: #007bff;
+    background: linear-gradient(135deg, #14683f, var(--bob-emerald));
+    border-color: rgba(52, 211, 125, .76);
+    color: #fffbe3;
+    box-shadow: 0 10px 24px rgba(25, 150, 95, .26);
 }
 
 .btn-primary:hover {
-    background: #0069d9;
-    border-color: #0062cc;
+    background: linear-gradient(135deg, #1b8050, #21ad6d);
+    border-color: var(--bob-emerald-bright);
+    transform: translateY(-1px);
 }
 
 .btn-info {
-    background: #17a2b8;
-    border-color: #17a2b8;
+    background: linear-gradient(135deg, #a78225, var(--bob-gold));
+    border-color: rgba(255, 227, 138, .82);
+    color: #10150d;
+    font-weight: 600;
+    box-shadow: 0 10px 24px rgba(215, 182, 80, .18);
 }
 
 .btn-info:hover {
-    background: #138496;
-    border-color: #117a8b;
+    background: linear-gradient(135deg, #c49b32, var(--bob-gold-bright));
+    border-color: var(--bob-gold-bright);
+    transform: translateY(-1px);
 }
 
 .btn-sm {
@@ -197,7 +243,7 @@ fieldset {
     min-width: 0;
     margin: 0 0 1rem;
     padding: .35rem .75rem .625rem;
-    border: 1px solid #dee2e6;
+    border: 1px solid var(--bob-line);
 }
 
 legend {
@@ -223,7 +269,7 @@ legend {
 footer {
     margin: 3rem 0;
     padding-top: 1.5rem;
-    color: #6c757d;
+    color: var(--bob-muted);
     text-align: center;
     font-size: .875rem;
 }
@@ -239,7 +285,7 @@ footer p {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .72);
     transition: opacity .3s ease;
 }
 
@@ -248,10 +294,40 @@ footer p {
     width: calc(100% - 2rem);
     margin: 40px auto 0;
     padding: 20px 30px;
-    background-color: #fff;
-    border-radius: 2px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+    background: linear-gradient(180deg, rgba(17, 39, 25, .98), rgba(7, 17, 10, .98));
+    border: 1px solid rgba(215, 182, 80, .5);
+    border-radius: 8px;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, .55), 0 0 34px rgba(25, 150, 95, .18);
     transition: all .3s ease;
+}
+
+.modal-content-block {
+    padding: 0;
+}
+
+.modal-hero {
+    border-bottom: 1px solid rgba(215, 182, 80, .42);
+    background: #030604;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-hero-image {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: min(58vh, 520px);
+    object-fit: contain;
+}
+
+.modal-container-hero {
+    max-width: 460px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.modal-container-hero .modal-content-block {
+    padding: 22px 30px 26px;
 }
 
 .modal-container-status {

@@ -1,24 +1,29 @@
 ﻿<transition name="modal_alert">
     <div class="modal-mask" v-show="show" @click.self="$emit('close')" style="z-index: 1000;">
-        <div class="modal-container" @click.stop>
-            <h4>{{ title }}</h4>
-            <hr>
-            <div class="modal-row">
-                <div class="full-width">
-                    {{ message }}
-                </div>
+        <div :class="['modal-container', { 'modal-container-hero': image }]" @click.stop>
+            <div class="modal-hero" v-if="image">
+                <img class="modal-hero-image" :src="image" :alt="imageAlt || title" width="480">
             </div>
-            <br />
-            <div class="modal-row">
-                <div class="full-width">
-                    {{ secondary }}
+            <div class="modal-content-block">
+                <h4>{{ title }}</h4>
+                <hr>
+                <div class="modal-row">
+                    <div class="full-width">
+                        {{ message }}
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="modal-row">
-                <div class="full-width">
-                    <button class="btn btn-primary" v-if="yesNo()" @click.stop.prevent="sayYes">Yes</button>
-                    <button class="btn btn-info btn-sm" @click.stop.prevent="$emit('close')">Close</button>
+                <br />
+                <div class="modal-row">
+                    <div class="full-width">
+                        {{ secondary }}
+                    </div>
+                </div>
+                <hr>
+                <div class="modal-row">
+                    <div class="full-width">
+                        <button class="btn btn-primary" v-if="yesNo()" @click.stop.prevent="sayYes">Yes</button>
+                        <button class="btn btn-info btn-sm" @click.stop.prevent="$emit('close')">Close</button>
+                    </div>
                 </div>
             </div>
         </div>

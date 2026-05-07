@@ -14,7 +14,7 @@
 <body>
     <div class="container" id="bob_calypso" style="z-index:-2">
         <modal_chart :show="showModalChart" @close="showModalChart = false"></modal_chart>
-        <modal_alert :show="showModalAlert" @close="showModalAlert = false" :title="modal_title" :message="modal_message" :secondary="modal_secondary" :confirm="modal_yes_no_action"></modal_alert>
+        <modal_alert :show="showModalAlert" @close="showModalAlert = false" :title="modal_title" :message="modal_message" :secondary="modal_secondary" :confirm="modal_yes_no_action" :image="modal_image" :image-alt="modal_image_alt"></modal_alert>
         <div class="app-header">
             <img class="app-logo" src="img/logo.svg" width="200" alt="Calypso Systems LLC">
             <h2>Welcome to Bob Calypso .Net Everywhere Sample App</h2>
@@ -47,7 +47,7 @@
         <div class="action-row">
             <div class="form-panel">
                 <h4>Save Item</h4>
-                <form class="needs-validation was-validated" action="javascript:void(0)" @submit.prevent="submitItemsForm">
+                <div class="needs-validation was-validated">
                     <div class="form-field">
                         <label for="item_one">Item One</label>
                         <input type="text" class="form-control" v-model="item_one" id="item_one" name="item_one" placeholder="" required="">
@@ -60,7 +60,7 @@
                         <input type="text" class="form-control" v-model="item_two" id="item_two" name="item_two" placeholder="" required="">
                     </div>
                     <button class="btn btn-primary" type="button" @click.prevent="submitItemsForm">Process Items</button>
-                </form>
+                </div>
             </div>
             <div class="chart-action">
                 <button class="btn btn-info" v-on:click.prevent="showChart">
