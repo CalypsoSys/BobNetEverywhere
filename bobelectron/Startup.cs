@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -70,6 +70,9 @@ namespace bobelectron
 
         private Dictionary<string, object> _data = new Dictionary<string, object>();
 
+        /// <summary>
+        /// Creates the Electron host window and wires IPC handlers used by the shared web UI.
+        /// </summary>
         public async void ElectronBootstrap()
         {
             var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
@@ -91,10 +94,10 @@ namespace bobelectron
             browserWindow.SetTitle("Bob Calypsos .Net Everywhere");
             browserWindow.RemoveMenu();
 
-            ElectronNET.API.Electron.IpcMain.On("open_window", (args) =>
+            await ElectronNET.API.Electron.IpcMain.On("open_window", async (args) =>
             {
                 var jsonArgs = args as Newtonsoft.Json.Linq.JArray;
-                var browserWindow = Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
+                await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
                 {
                     Icon = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets\\icon.ico"),
                     WebPreferences = new WebPreferences
@@ -107,7 +110,7 @@ namespace bobelectron
                 _data.Add(jsonArgs[1].ToString(), jsonArgs[2]);
             });
 
-            ElectronNET.API.Electron.IpcMain.On("opened_window", (args) =>
+            await ElectronNET.API.Electron.IpcMain.On("opened_window", (args) =>
             {
                 var id = args as string;
                 if (_data.ContainsKey(id))

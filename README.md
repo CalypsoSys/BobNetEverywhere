@@ -1,6 +1,6 @@
 # BobNetEverywhere
 
-Run template to show how to run the same .Net Core 5.0 project in 
+Run template to show how to run the same .NET 10 project in
 * Web: 
 	* nginx on Ubuntu
 	* docker on Centos (see https://bobcalypso.com/index.html)
@@ -18,8 +18,8 @@ Using
 * https://www.chartjs.org/
 
 
-dotnet publish --configuration Release
-BobNetEverywhere\bobweb\bin\Release\net5.0\publish
+dotnet publish bobweb/bobweb.csproj --configuration Release
+BobNetEverywhere\bobweb\bin\Release\net10.0\publish
 sudo chown www-data:www-data /var/www/bobelectron
 
 Add to nginx /etc/nginx/sites-available/default
@@ -43,8 +43,8 @@ Add to nginx /etc/nginx/sites-available/default
 Description=Bob Calypsos .Net Everywhere
 
 [Service]
-WorkingDirectory=/home/inctrakmanga/dotnet/bobweb
-ExecStart=/usr/bin/dotnet /home/inctrakmanga/dotnet/bobweb/bobweb.dll --urls=http://localhost:6000
+WorkingDirectory=/opt/bobnet/bobweb
+ExecStart=/usr/bin/dotnet /opt/bobnet/bobweb/bobweb.dll --urls=http://localhost:6000
 Restart=always
 # Restart service after 10 seconds if the dotnet service crashes:
 RestartSec=10
@@ -64,11 +64,9 @@ sudo systemctl start bob-calypso.service
 sudo systemctl status bob-calypso.service
 ```
 
-Build/run a Docker w/ nginx and letsencrypt
+Build/run with Docker Compose
 ```
-docker build -t bobcalypsoweb .
-docker rmi $(docker images -f "dangling=true" -q)
-docker save bobcalypsoweb > /tmp/bobcalypsoweb.tar
-docker load < bobcalypsoweb.tar
-docker-compose start|up -d
+docker compose up -d --build
 ```
+
+The compose file maps the web/API host to `http://localhost:6000` and does not assume a specific domain, reverse proxy, or TLS provider.

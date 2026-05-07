@@ -1,22 +1,13 @@
-version: "3"
-
 services:
-  inctrak_goals:
+  bobweb:
     image: bobcalypsoweb:latest
-    expose:
-      - 80
-    restart: always
-    volumes:
-      - ./app/appsettings.json:/app/appsettings.json
-      - ./bobelectron:/var/www/bobelectron
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "6000:8080"
+    restart: unless-stopped
     environment:
-      VIRTUAL_HOST: bobcalypso.com,www.bobcalypso.com
-      LETSENCRYPT_HOST: bobcalypso.com,www.bobcalypso.com
-      LETSENCRYPT_EMAIL: calypsosystemsllc@gmail.com
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
     container_name: bobcalypsoweb
-
-networks:
-  default:
-    external:
-      name: nginx-proxy
-

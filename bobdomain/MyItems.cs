@@ -10,6 +10,10 @@ namespace bobdomain
     public static class MyItems
     {
         private const int _items = 5;
+
+        /// <summary>
+        /// Builds the default item list and appends any user-saved items from the configured data path.
+        /// </summary>
         public static object GetMyItems(string dataPath, int id)
         {
             string[] source = new string[] { "One", "Two", "Three", "Four", "Five", };
@@ -57,6 +61,9 @@ namespace bobdomain
             return items;
         }
 
+        /// <summary>
+        /// Persists a user-entered item pair to the configured data path for later display.
+        /// </summary>
         public static bool SaveItem(string dataPath, int id, string itemOne, string itemTwo)
         {
             try
@@ -71,7 +78,7 @@ namespace bobdomain
 
                 return true;
             }
-            catch(Exception excp)
+            catch
             {
                 return false;
             }
