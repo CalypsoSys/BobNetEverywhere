@@ -12,14 +12,4 @@
     <ProjectReference Include="..\bobdomain\bobdomain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="..\bobstatic\**" Link="wwwroot\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="Always" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="wwwroot\javascript\overrides.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>

@@ -8,5 +8,6 @@ namespace bobweb
     public class AppSettings
     {
         public string FileSaveLocation { get; set; }
+        public string[] AllowedOrigins { get; set; }
     }
 }

@@ -8,6 +8,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\bobstatic\**" Link="wwwroot\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="Always" />
+    <Content Remove="..\bobstatic\javascript\overrides.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\bobdomain\bobdomain.csproj" />

@@ -46,7 +46,7 @@
         onSubmitDoNothing: function () {
         },
         createChart: function () {
-            axios.get('/api/chart/get_chart_data/', {
+            axios.get(bobApiUrl('/api/chart/get_chart_data/'), {
                 params: {
                     id: 1,
                     chart_type: this.chart_type
@@ -84,7 +84,7 @@
                     label: this.chartData.datasets[i].label,
                 });
             }
-            var bobcharting = customWindowOpen("/bob_charting.html", "_blank",
+            var bobcharting = customWindowOpen("bob_charting.html", "_blank",
                 { chartData:
                     {
                         chart_type: this.chart_type,
@@ -101,7 +101,7 @@
 };
 
 function vueChartResolver(resolve, reject) {
-    axios.get('/comp/modal_chart.html')
+    axios.get('comp/modal_chart.html')
     .then(response => {
         vueChartDefinition.template = response.data;
         resolve(vueChartDefinition);

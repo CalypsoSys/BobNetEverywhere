@@ -23,15 +23,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bobstatic", "bobstatic", "{
 		bobstatic\img\logo.png = bobstatic\img\logo.png
 		bobstatic\img\logo.svg = bobstatic\img\logo.svg
 		bobstatic\index.html = bobstatic\index.html
+		bobstatic\javascript\overrides.js = bobstatic\javascript\overrides.js
 		bobstatic\js\bob_alert.js = bobstatic\js\bob_alert.js
 		bobstatic\js\bob_chart.js = bobstatic\js\bob_chart.js
 		bobstatic\js\bob_charting.js = bobstatic\js\bob_charting.js
+		bobstatic\js\bob_config.js = bobstatic\js\bob_config.js
 		bobstatic\js\bobcalypso.js = bobstatic\js\bobcalypso.js
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bobelectron", "bobelectron\bobelectron.csproj", "{FF2BE989-3920-4950-9B48-EC386DE16E0F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bobdomain.tests", "bobdomain.tests\bobdomain.tests.csproj", "{71EEB8CA-4471-4E49-A38E-E00F79594721}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bobweb.tests", "bobweb.tests\bobweb.tests.csproj", "{C09D7F01-1ED8-4752-85C6-CAB995896BFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,10 @@ Global
 		{71EEB8CA-4471-4E49-A38E-E00F79594721}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71EEB8CA-4471-4E49-A38E-E00F79594721}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71EEB8CA-4471-4E49-A38E-E00F79594721}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C09D7F01-1ED8-4752-85C6-CAB995896BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C09D7F01-1ED8-4752-85C6-CAB995896BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C09D7F01-1ED8-4752-85C6-CAB995896BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C09D7F01-1ED8-4752-85C6-CAB995896BFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

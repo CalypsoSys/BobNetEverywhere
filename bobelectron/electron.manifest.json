@@ -4,7 +4,7 @@
     "imageFile": ""
   },
   "name": "bobelectron",
-  "author": "Joe Schmitt",
+  "author": "Calypso Systems, LLC",
   "singleInstance": false,
   "aspCoreBackendPort": 63239,
   "environment": "Production",

@@ -1,6 +1,7 @@
 ﻿function customWindowOpen(url, target, data) {
     var epoch = Date.now();
-    var x = require('electron').ipcRenderer.send("open_window", ["http://localhost:63239" + url + "?id=" + epoch, epoch, data])
+    var windowUrl = url.charAt(0) === "/" ? url : "/" + url;
+    var x = require('electron').ipcRenderer.send("open_window", ["http://localhost:63239" + windowUrl + "?id=" + epoch, epoch, data])
 }
 
 function renderWindowData(id, callback) {

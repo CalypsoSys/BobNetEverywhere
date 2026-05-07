@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace bobweb.Controllers
 {
-    [Route("/")]
+    [Route("api/items")]
     public class DefaultController : ControllerBase
     {
         private readonly IOptions<AppSettings> _config;
@@ -19,12 +19,6 @@ namespace bobweb.Controllers
         {
             _config = config;
             _logger = logger;
-        }
-
-        [HttpGet]
-        public RedirectResult Get()
-        {
-            return Redirect(new Uri("/index.html", UriKind.Relative).ToString());
         }
 
         [HttpGet("my_list")]

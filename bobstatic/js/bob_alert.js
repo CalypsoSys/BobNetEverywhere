@@ -23,7 +23,7 @@
 };
 
 function vueAlertResolver(resolve, reject) {
-    axios.get('/comp/modal_alert.html')
+    axios.get('comp/modal_alert.html')
     .then(response => {
         vueAlertDefinition.template = response.data;
         resolve(vueAlertDefinition);

@@ -35,7 +35,7 @@ var bobCalypso = new Vue({
             this.showModalAlert = true
         },
         showMyList: function () {
-            axios.get('/my_list/', {
+            axios.get(bobApiUrl('/api/items/my_list'), {
                 params: {
                     id: 1
                 }
@@ -67,7 +67,7 @@ var bobCalypso = new Vue({
             if (!this.validateForm()) {
                 return;
             }
-            axios.get('/api/chart/save_items/', {
+            axios.get(bobApiUrl('/api/chart/save_items/'), {
                 params: {
                     id: 1,
                     item_one: this.item_one,

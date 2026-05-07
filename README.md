@@ -69,4 +69,4 @@ Build/run with Docker Compose
 docker compose up -d --build
 ```
 
-The compose file maps the web/API host to `http://localhost:6000` and does not assume a specific domain, reverse proxy, or TLS provider.
+The compose file maps the API host to `http://localhost:6000` and does not assume a specific domain, reverse proxy, or TLS provider. Host the files in `bobstatic/` separately as a static site. For deployments where the static site is not served from the same origin as the API, set `window.bobApiBaseUrl` in `bobstatic/js/bob_config.js` to the API origin.

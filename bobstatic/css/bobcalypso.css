@@ -1,4 +1,238 @@
-﻿.modal-mask {
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f8f9fa;
+    color: #111827;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.container {
+    width: min(1128px, calc(100% - 2rem));
+    margin: 0 auto;
+}
+
+.app-header {
+    padding: 4rem 0 4.25rem;
+    text-align: center;
+}
+
+.chart-header {
+    padding: 4rem 0 2rem;
+    text-align: center;
+}
+
+.app-logo {
+    display: block;
+    width: 200px;
+    height: auto;
+    margin: 0 auto 2rem;
+}
+
+h2 {
+    margin: 0 0 .5rem;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+h4 {
+    margin: 0 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.lead {
+    margin: 0;
+    color: #31263f;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+.table-region {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+}
+
+th,
+td {
+    padding: .75rem;
+    border-top: 1px solid #dee2e6;
+    text-align: left;
+    vertical-align: top;
+}
+
+thead th {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 700;
+}
+
+tbody th {
+    font-weight: 700;
+}
+
+hr {
+    margin: 1.5rem 0;
+    border: 0;
+    border-top: 1px solid #dee2e6;
+}
+
+.action-row {
+    display: grid;
+    grid-template-columns: minmax(260px, 5fr) minmax(180px, 5fr);
+    gap: 2rem;
+    align-items: start;
+    padding-bottom: 1.5rem;
+}
+
+.form-panel {
+    max-width: 460px;
+}
+
+.form-field {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    min-height: 2.375rem;
+    padding: .375rem .75rem;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    background: #fff;
+    color: #495057;
+    font: inherit;
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    color: #dc3545;
+    font-size: 80%;
+}
+
+.was-validated .form-control:invalid + .invalid-feedback {
+    display: block;
+}
+
+.btn {
+    display: inline-block;
+    min-height: 2.375rem;
+    padding: .375rem .75rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    color: #fff;
+    font: inherit;
+    line-height: 1.5;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+
+.btn-primary {
+    background: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background: #0069d9;
+    border-color: #0062cc;
+}
+
+.btn-info {
+    background: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info:hover {
+    background: #138496;
+    border-color: #117a8b;
+}
+
+.btn-sm {
+    min-height: 1.9375rem;
+    padding: .25rem .5rem;
+    font-size: .875rem;
+}
+
+.chart-action {
+    padding-top: 1.875rem;
+}
+
+.chart-canvas-row,
+.modal-row {
+    display: flex;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.modal-column {
+    width: min(100%, 360px);
+}
+
+fieldset {
+    min-width: 0;
+    margin: 0 0 1rem;
+    padding: .35rem .75rem .625rem;
+    border: 1px solid #dee2e6;
+}
+
+legend {
+    width: auto;
+    padding: 0 .25rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.form-check {
+    position: relative;
+    display: block;
+    margin-bottom: .5rem;
+    padding-left: 1.25rem;
+}
+
+.form-check-input {
+    position: absolute;
+    margin-top: .35rem;
+    margin-left: -1.25rem;
+}
+
+footer {
+    margin: 3rem 0;
+    padding-top: 1.5rem;
+    color: #6c757d;
+    text-align: center;
+    font-size: .875rem;
+}
+
+footer p {
+    margin: 0;
+}
+
+.modal-mask {
     position: fixed;
     z-index: 100;
     top: 0;
@@ -10,7 +244,8 @@
 }
 
 .modal-container {
-    width: 600px;
+    max-width: 600px;
+    width: calc(100% - 2rem);
     margin: 40px auto 0;
     padding: 20px 30px;
     background-color: #fff;
@@ -20,13 +255,12 @@
 }
 
 .modal-container-status {
-    width: 700px;
+    max-width: 700px;
 }
 
 .modal-container-large {
-    width: 1000px;
+    max-width: 1000px;
 }
-
 
 /*
 * The following styles are auto-applied to elements with
@@ -42,4 +276,35 @@
 
 .modal-leave-active {
     opacity: 0;
+}
+
+@media (max-width: 720px) {
+    .container {
+        width: min(100% - 1rem, 1128px);
+    }
+
+    .app-header {
+        padding: 2.5rem 0;
+    }
+
+    h2 {
+        font-size: 1.65rem;
+    }
+
+    .lead {
+        font-size: 1.05rem;
+    }
+
+    .action-row {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-action {
+        padding-top: 0;
+    }
+
+    th,
+    td {
+        padding: .65rem .5rem;
+    }
 }
