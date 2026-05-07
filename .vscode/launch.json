@@ -24,8 +24,8 @@
             "type": "pwa-chrome",
             "request": "launch",
             "preLaunchTask": "frontend: prepare browser launch",
-            "url": "http://127.0.0.1:5500/index.html",
-            "webRoot": "${workspaceFolder}/bobstatic",
+            "url": "http://127.0.0.1:5500/bobstatic/",
+            "webRoot": "${workspaceFolder}",
             "presentation": {
                 "group": "local",
                 "order": 1,
