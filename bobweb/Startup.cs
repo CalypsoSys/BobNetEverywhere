@@ -68,6 +68,7 @@ namespace bobweb
                 ForwardedHeaders = ForwardedHeaders.XForwardedProto
             });
 
+            app.UseMiddleware<AccessLogMiddleware>();
             app.UseRouting();
 
             app.UseCors();

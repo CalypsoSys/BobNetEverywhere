@@ -53,7 +53,8 @@ docker compose up --build
 ```
 
 The compose file publishes the ASP.NET Core app on `http://localhost:5080` and mounts repo-level `./data` into the
-container at `/app/data`.
+container at `/app/data`. It also mounts repo-level `./logs` into `/app/logs` so access and error logs are visible on
+the host during local smoke tests.
 
 ## Electron Sample
 
