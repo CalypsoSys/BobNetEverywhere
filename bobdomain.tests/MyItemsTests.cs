@@ -15,7 +15,7 @@ public class MyItemsTests
             bool saved = MyItems.SaveItem(dataPath, 7, "alpha", "beta");
 
             Assert.True(saved);
-            Assert.Equal("7,alpha,beta", File.ReadAllText(Path.Combine(dataPath, "data", "saved_items.txt")).Trim());
+            Assert.Equal("7,alpha,beta", File.ReadAllText(Path.Combine(dataPath, "saved_items.txt")).Trim());
         }
         finally
         {
@@ -35,6 +35,7 @@ public class MyItemsTests
             IEnumerable items = (IEnumerable)MyItems.GetMyItems(dataPath, 3);
 
             Assert.Contains(items.Cast<object>(), item => item.GetType().GetProperty("Source")?.GetValue(item)?.ToString() == "User Entered");
+            Assert.True(File.Exists(Path.Combine(dataPath, "saved_items.txt")));
         }
         finally
         {

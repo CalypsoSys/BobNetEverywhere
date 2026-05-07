@@ -32,7 +32,7 @@ namespace bobdomain
 
             try
             {
-                string itemPath = Path.Combine(dataPath, "data", "saved_items.txt");
+                string itemPath = Path.Combine(dataPath, "saved_items.txt");
                 using (StreamReader input = new StreamReader(itemPath))
                 {
                     string line;
@@ -68,9 +68,8 @@ namespace bobdomain
         {
             try
             {
-                string dataFolder = Path.Combine(dataPath, "data");
-                Directory.CreateDirectory(dataFolder);
-                string itemPath = Path.Combine(dataFolder, "saved_items.txt");
+                Directory.CreateDirectory(dataPath);
+                string itemPath = Path.Combine(dataPath, "saved_items.txt");
                 using ( StreamWriter output = new StreamWriter(itemPath, true))
                 {
                     output.WriteLine("{0},{1},{2}", id, itemOne, itemTwo);
