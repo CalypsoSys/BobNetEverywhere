@@ -1,7 +1,7 @@
 ﻿<transition name="modal_chart">
-    <div class="modal-mask" style="max-height: 900px;overflow: auto; overflow-y:scroll;" v-show="show" @click="closeUp()">
+    <div class="modal-mask" style="max-height: 900px;overflow: auto; overflow-y:scroll;" v-show="show" @click.self="closeUp">
         <div class="modal-container modal-container-large" @click.stop>
-            <h2>Quick Chart/Report <button class="btn btn-info btn-sm" @click="openReportWindow">Open in new tab</button></h2>
+            <h2>Quick Chart/Report <button class="btn btn-info btn-sm" @click.stop.prevent="openReportWindow">Open in new tab</button></h2>
             <hr>
             <div class="chart-canvas-row" v-show="showChart">
                 <div class="full-width">
@@ -34,8 +34,7 @@
 
             <div class="modal-row">
                 <div class="full-width">
-                    <button class="btn btn-primary" @click="createChart()">Create Chart</button>
-                    <button class="btn btn-info btn-sm" @click="closeUp()">Close</button>
+                    <button class="btn btn-info btn-sm" @click.stop.prevent="closeUp">Close</button>
                 </div>
             </div>
         </div>

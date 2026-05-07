@@ -1,7 +1,6 @@
 ﻿using bobdomain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +11,12 @@ namespace bobweb.Controllers
     [Route("api/items")]
     public class DefaultController : ControllerBase
     {
-        private readonly IOptions<AppSettings> _config;
+        private readonly IItemStoragePathProvider _storagePathProvider;
         private readonly ILogger<DefaultController> _logger;
 
-        public DefaultController(IOptions<AppSettings> config, ILogger<DefaultController> logger)
+        public DefaultController(IItemStoragePathProvider storagePathProvider, ILogger<DefaultController> logger)
         {
-            _config = config;
+            _storagePathProvider = storagePathProvider;
             _logger = logger;
         }
 
@@ -26,7 +25,7 @@ namespace bobweb.Controllers
         {
             try
             {
-                return new { Success = true, MyList = MyItems.GetMyItems(_config.Value.FileSaveLocation, id) };
+                return new { Success = true, MyList = MyItems.GetMyItems(_storagePathProvider.GetDataPath(), id) };
             }
             catch
             {

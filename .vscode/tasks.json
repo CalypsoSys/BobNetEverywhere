@@ -16,7 +16,7 @@
         {
             "label": "backend: wait for ready",
             "type": "shell",
-            "command": "for attempt in $(seq 1 60); do if (echo > /dev/tcp/127.0.0.1/6000) >/dev/null 2>&1; then exit 0; fi; sleep 1; done; echo \"bobweb did not become ready on http://127.0.0.1:6000 within 60 seconds.\" >&2; exit 1",
+            "command": "for attempt in $(seq 1 60); do if (echo > /dev/tcp/127.0.0.1/5080) >/dev/null 2>&1; then exit 0; fi; sleep 1; done; echo \"bobweb did not become ready on http://127.0.0.1:5080 within 60 seconds.\" >&2; exit 1",
             "options": {
                 "cwd": "${workspaceFolder}",
                 "shell": {

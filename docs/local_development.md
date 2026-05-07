@@ -27,7 +27,7 @@ dotnet run --project bobweb/bobweb.csproj
 ```
 
 The development config in `bobweb/appsettings.Development.json` intentionally contains only non-secret localhost
-origins for CORS.
+origins for CORS and stores sample item data in the repo-level `data/` folder.
 
 ## VS Code Workflow
 
@@ -38,7 +38,7 @@ local workflow similar to `mma`, but without a JavaScript build tool.
 2. Start the Live Server extension for that file.
 3. Run the `Local: Live Server + bobweb` compound launch.
 
-That flow keeps the static sample on `http://127.0.0.1:5500` and the API on `http://localhost:6000`, which matches the
+That flow keeps the static sample on `http://127.0.0.1:5500` and the API on `http://localhost:5080`, which matches the
 existing development CORS examples.
 
 ## Docker Sample
@@ -49,7 +49,8 @@ Build and run the web sample in Docker:
 docker compose up --build
 ```
 
-The compose file publishes the ASP.NET Core app on `http://localhost:6000`.
+The compose file publishes the ASP.NET Core app on `http://localhost:5080` and mounts repo-level `./data` into the
+container at `/app/data`.
 
 ## Electron Sample
 

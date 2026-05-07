@@ -29,8 +29,8 @@ Use this path when you want the sample web API packaged with a container image.
 docker compose up -d --build
 ```
 
-The current compose file exposes the API on `http://localhost:6000` and leaves domain, proxy, and TLS concerns to the
-host environment.
+The current compose file exposes the API on `http://localhost:5080`, stores sample item data in `./data`, and leaves
+domain, proxy, and TLS concerns to the host environment.
 
 ## IIS on Windows
 

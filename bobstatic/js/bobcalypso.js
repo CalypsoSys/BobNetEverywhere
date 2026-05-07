@@ -1,29 +1,24 @@
-﻿var router = new VueRouter({
-    mode: 'history',
-    routes: []
-});
-
-var bobCalypso = new Vue({
-    el: '#bob_calypso',
-    data: {
-        myList: null,
-        item_one: "",
-        item_two: "",
-        showModalChart: false,
-        showModalAlert: false,
-        chart_name: "",
-        modal_title: "",
-        modal_message: "",
-        modal_secondary: "",
-        modal_yes_no_action: "",
+var bobCalypso = Vue.createApp({
+    data: function () {
+        return {
+            myList: null,
+            item_one: "",
+            item_two: "",
+            showModalChart: false,
+            showModalAlert: false,
+            chart_name: "",
+            modal_title: "",
+            modal_message: "",
+            modal_secondary: "",
+            modal_yes_no_action: "",
+        };
     },
     mounted: function () {
-        document.onreadystatechange = () => {
-            if (document.readyState == "complete") {
-                this.showModalDialog("Welcome", "To Bob Calypso .Net Everywhere");
-                this.showMyList();
-            }
+        if (!window.sessionStorage.getItem("bobWelcomeShown")) {
+            window.sessionStorage.setItem("bobWelcomeShown", "true");
+            this.showModalDialog("Welcome", "To Bob Calypso .Net Everywhere");
         }
+        this.showMyList();
     },
     methods: {
         showModalDialog: function (title, message, secondary, yesNoAction) {
@@ -32,7 +27,7 @@ var bobCalypso = new Vue({
             this.modal_secondary = secondary;
             this.modal_yes_no_action = yesNoAction;
             this.showModalStatus = false;
-            this.showModalAlert = true
+            this.showModalAlert = true;
         },
         showMyList: function () {
             axios.get(bobApiUrl('/api/items/my_list'), {
@@ -52,7 +47,7 @@ var bobCalypso = new Vue({
             });
         },
         validateForm: function () {
-            var error = ""
+            var error = "";
             if (!this.item_one) {
                 error += "Please enter item one<br>";
             }
@@ -63,7 +58,11 @@ var bobCalypso = new Vue({
 
             return true;
         },
-        submitItemsForm: function () {
+        submitItemsForm: function (event) {
+            if (event) {
+                event.preventDefault();
+            }
+
             if (!this.validateForm()) {
                 return;
             }
@@ -76,7 +75,7 @@ var bobCalypso = new Vue({
             })
             .then(response => {
                 if (response.data && response.data.Success) {
-                    this.showMyList()
+                    this.showMyList();
                 } else {
                     this.showModalDialog("Unknown Error", "Bob: error.");
                 }
@@ -90,3 +89,7 @@ var bobCalypso = new Vue({
         },
     }
 });
+
+bobCalypso.component('modal_chart', vueChartDefinition);
+bobCalypso.component('modal_alert', vueAlertDefinition);
+bobCalypso.mount('#bob_calypso');

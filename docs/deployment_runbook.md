@@ -17,9 +17,10 @@ docker compose config
 ## Docker-Based Web Deployment
 
 1. Build and start the service.
-2. Confirm the container is healthy and listening on port `6000`.
-3. Put Caddy or nginx in front of the service if you need TLS or public routing.
-4. Smoke-test the API routes and any static UI that depends on them.
+2. Confirm the container is healthy and listening on port `5080`.
+3. Confirm sample item data is being written to the mounted `./data` folder.
+4. Put Caddy or nginx in front of the service if you need TLS or public routing.
+5. Smoke-test the API routes and any static UI that depends on them.
 
 Example command:
 

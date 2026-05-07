@@ -5,7 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "6000:8080"
+      - "5080:8080"
+    volumes:
+      - ./data:/app/data
     restart: unless-stopped
     environment:
       ASPNETCORE_ENVIRONMENT: Production

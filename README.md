@@ -55,13 +55,13 @@ BobNetEverywhere/bobweb/bin/Release/net10.0/publish
 ```
 
 If you copy the published files to `/opt/bobnet/bobweb`, an nginx site can proxy traffic to the ASP.NET Core app on
-port `6000`.
+port `5080`.
 
 Example nginx location block:
 
 ```nginx
 location / {
-    proxy_pass         http://localhost:6000;
+    proxy_pass         http://localhost:5080;
     proxy_http_version 1.1;
     proxy_set_header   Upgrade $http_upgrade;
     proxy_set_header   Connection keep-alive;
@@ -80,7 +80,7 @@ Description=Bob Calypsos .Net Everywhere
 
 [Service]
 WorkingDirectory=/opt/bobnet/bobweb
-ExecStart=/usr/bin/dotnet /opt/bobnet/bobweb/bobweb.dll --urls=http://localhost:6000
+ExecStart=/usr/bin/dotnet /opt/bobnet/bobweb/bobweb.dll --urls=http://localhost:5080
 Restart=always
 RestartSec=10
 KillSignal=SIGINT
@@ -105,7 +105,7 @@ sudo systemctl status bob-calypso.service
 
 The repo includes `.vscode/` settings for a local debugging workflow that pairs:
 
-- `bobweb` on `http://localhost:6000`
+- `bobweb` on `http://localhost:5080`
 - `bobstatic` served through the Live Server extension on `http://127.0.0.1:5500`
 
 Start Live Server for `bobstatic/index.html`, then use the `Local: Live Server + bobweb` compound launch.
@@ -115,6 +115,6 @@ Start Live Server for `bobstatic/index.html`, then use the `Local: Live Server +
 This repo is intentionally public-facing. Keep secrets, private domains, private IPs, and machine-specific settings
 out of source control.
 
-The compose file maps the web API to `http://localhost:6000` and does not assume a specific domain, reverse proxy, or
-TLS provider. If the static files are not served from the same origin as the API, set `window.bobApiBaseUrl` in
-`bobstatic/js/bob_config.js` to the API origin used by the browser.
+The compose file maps the web API to `http://localhost:5080`, stores sample item data in `./data`, and does not assume
+a specific domain, reverse proxy, or TLS provider. If the static files are not served from the same origin as the API,
+set `window.bobApiBaseUrl` in `bobstatic/js/bob_config.js` to the API origin used by the browser.

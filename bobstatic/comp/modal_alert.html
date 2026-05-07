@@ -1,5 +1,5 @@
 ﻿<transition name="modal_alert">
-    <div class="modal-mask" v-show="show" @click="$emit('close')" style="z-index: 1000;">
+    <div class="modal-mask" v-show="show" @click.self="$emit('close')" style="z-index: 1000;">
         <div class="modal-container" @click.stop>
             <h4>{{ title }}</h4>
             <hr>
@@ -17,8 +17,8 @@
             <hr>
             <div class="modal-row">
                 <div class="full-width">
-                    <button class="btn btn-primary" v-if="yesNo()" @click="sayYes()">Yes</button>
-                    <button class="btn btn-info btn-sm" @click="$emit('close')">Close</button>
+                    <button class="btn btn-primary" v-if="yesNo()" @click.stop.prevent="sayYes">Yes</button>
+                    <button class="btn btn-info btn-sm" @click.stop.prevent="$emit('close')">Close</button>
                 </div>
             </div>
         </div>

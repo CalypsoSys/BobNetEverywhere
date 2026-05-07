@@ -1,7 +1,6 @@
 ﻿using bobdomain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +12,12 @@ namespace bobweb.Controllers
     [Route("api/[controller]")]
     public class ChartController : ControllerBase
     {
-        private readonly IOptions<AppSettings> _config;
+        private readonly IItemStoragePathProvider _storagePathProvider;
         private readonly ILogger<ChartController> _logger;
 
-        public ChartController(IOptions<AppSettings> config, ILogger<ChartController> logger)
+        public ChartController(IItemStoragePathProvider storagePathProvider, ILogger<ChartController> logger)
         {
-            _config = config;
+            _storagePathProvider = storagePathProvider;
             _logger = logger;
         }
 
@@ -29,7 +28,7 @@ namespace bobweb.Controllers
             { 
                 GraphData graph = new GraphData();
                     
-                return new { Success = MyItems.SaveItem(_config.Value.FileSaveLocation,id, item_one, item_two) };
+                return new { Success = MyItems.SaveItem(_storagePathProvider.GetDataPath(), id, item_one, item_two) };
             }
             catch(Exception excp)
             {

@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +41,7 @@ namespace bobweb
                 });
             });
 
+            services.AddSingleton<IItemStoragePathProvider, ItemStoragePathProvider>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -67,8 +67,6 @@ namespace bobweb
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedProto
             });
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
