@@ -1,6 +1,6 @@
 services:
   bobweb:
-    image: bobcalypsoweb:latest
+    image: bobneteverywhere:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,4 +13,4 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://+:8080
-    container_name: bobcalypsoweb
+    container_name: bobneteverywhere
