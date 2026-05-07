@@ -116,5 +116,6 @@ This repo is intentionally public-facing. Keep secrets, private domains, private
 out of source control.
 
 The compose file maps the web API to `http://localhost:5080`, stores sample item data in `./data`, and does not assume
-a specific domain, reverse proxy, or TLS provider. If the static files are not served from the same origin as the API,
-set `window.bobApiBaseUrl` in `bobstatic/js/bob_config.js` to the API origin used by the browser.
+a specific domain, reverse proxy, or TLS provider. The static sample uses same-origin `/api/*` calls by default in
+hosted environments. If the static files are not served from the same origin as the API, set `window.bobApiBaseUrl`
+in `bobstatic/js/bob_config.js` to the API origin used by the browser.

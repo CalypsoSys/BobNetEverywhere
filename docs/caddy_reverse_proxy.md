@@ -21,7 +21,7 @@ bob.example.com {
 
 - `bobweb` already processes forwarded protocol headers, which is the important proxy integration for HTTPS
   termination.
-- Keep the static sample in `bobstatic/` on the same origin when convenient. If you host the static files elsewhere,
-  set `window.bobApiBaseUrl` in `bobstatic/js/bob_config.js` to the API origin used by the browser.
+- The static sample uses same-origin `/api/*` calls by default in hosted environments. If you host the static files
+  elsewhere, set `window.bobApiBaseUrl` in `bobstatic/js/bob_config.js` to the API origin used by the browser.
 - Treat this file as a public sample. Do not add real domain names, private IP addresses, or environment-specific
   operational details here.

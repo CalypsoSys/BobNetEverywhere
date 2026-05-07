@@ -29,6 +29,9 @@ dotnet run --project bobweb/bobweb.csproj
 The development config in `bobweb/appsettings.Development.json` intentionally contains only non-secret localhost
 origins for CORS and stores sample item data in the repo-level `data/` folder.
 
+In hosted environments, the static sample uses same-origin `/api/*` calls by default. The local Live Server workflow
+keeps using `window.bobApiBaseUrl` to point browser requests at `http://localhost:5080`.
+
 ## VS Code Workflow
 
 The repository includes `.vscode/launch.json`, `.vscode/tasks.json`, and `.vscode/settings.json` for a lightweight
