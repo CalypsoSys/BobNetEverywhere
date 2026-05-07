@@ -17,7 +17,7 @@ docker compose config
 ## Docker-Based Web Deployment
 
 1. Build and start the service.
-2. Confirm the container is healthy and listening on port `5080`.
+2. Confirm the container is healthy and listening on port `8081`.
 3. Confirm sample item data is being written to the mounted `./data` folder.
 4. Confirm `./logs/access.log` and `./logs/errors.log` are being written on the host.
 5. Put Caddy or nginx in front of the service if you need TLS or public routing.

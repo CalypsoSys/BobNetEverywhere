@@ -29,7 +29,7 @@ Use this path when you want the sample web API packaged with a container image.
 docker compose up -d --build
 ```
 
-The current compose file exposes the API on `http://localhost:5080`, stores sample item data in `./data`, and leaves
+The current compose file exposes the API on `http://localhost:8081`, stores sample item data in `./data`, and leaves
 domain, proxy, and TLS concerns to the host environment. It also mounts `./logs` into `/app/logs` for host-visible
 access and error logs. The static sample expects same-origin `/api/*` calls unless a hosted deployment overrides
 `window.bobApiBaseUrl`.

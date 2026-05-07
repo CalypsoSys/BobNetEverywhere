@@ -30,7 +30,7 @@ The development config in `bobweb/appsettings.Development.json` intentionally co
 origins for CORS and stores sample item data in the repo-level `data/` folder.
 
 In hosted environments, the static sample uses same-origin `/api/*` calls by default. The local Live Server workflow
-keeps using `window.bobApiBaseUrl` to point browser requests at `http://localhost:5080`.
+keeps using `window.bobApiBaseUrl` to point browser requests at `http://localhost:8081`.
 
 ## VS Code Workflow
 
@@ -41,7 +41,7 @@ local workflow similar to `mma`, but without a JavaScript build tool.
 2. Start the Live Server extension for that file.
 3. Run the `Local: Live Server + bobweb` compound launch.
 
-That flow keeps the static sample on `http://127.0.0.1:5500` and the API on `http://localhost:5080`, which matches the
+That flow keeps the static sample on `http://127.0.0.1:5500` and the API on `http://localhost:8081`, which matches the
 existing development CORS examples.
 
 ## Docker Sample
@@ -52,7 +52,7 @@ Build and run the web sample in Docker:
 docker compose up --build
 ```
 
-The compose file publishes the ASP.NET Core app on `http://localhost:5080` and mounts repo-level `./data` into the
+The compose file publishes the ASP.NET Core app on `http://localhost:8081` and mounts repo-level `./data` into the
 container at `/app/data`. It also mounts repo-level `./logs` into `/app/logs` so access and error logs are visible on
 the host during local smoke tests.
 

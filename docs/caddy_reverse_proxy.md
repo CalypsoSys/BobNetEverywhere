@@ -7,13 +7,13 @@ names, email addresses, and other deployment-specific values out of the repo whe
 
 ## Example
 
-Replace `bob.example.com` with your real host name and point Caddy at the web sample running on port `5080`.
+Replace `bob.example.com` with your real host name and point Caddy at the web sample running on port `8081`.
 
 ```caddyfile
 bob.example.com {
     encode gzip zstd
 
-    reverse_proxy 127.0.0.1:5080
+    reverse_proxy 127.0.0.1:8081
 }
 ```
 

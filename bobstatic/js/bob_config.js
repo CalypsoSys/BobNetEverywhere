@@ -5,7 +5,7 @@ function detectBobApiBaseUrl() {
 
     if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
         if (window.location.port === "5500") {
-            return "http://localhost:5080";
+            return "http://localhost:8081";
         }
     }
 
